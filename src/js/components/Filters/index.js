@@ -6,7 +6,10 @@ import DateRange from './DateRange';
 export default class Filters extends React.Component {
 	render() {
 		return(
-			<SelectFilter articles={this.props.articles}/>
+			<div>
+				<DateRange />
+				<SelectFilter articles={this.props.articles}/>
+			</div>
 		);
 	}
 }
