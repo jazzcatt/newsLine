@@ -6,7 +6,7 @@ import {CSSTransitionGroup} from 'react-transition-group';
 
 export default class Article extends React.Component {
 	static propTypes = {
-		article: PropTypes.shape({
+			article: PropTypes.shape({
 			title: PropTypes.string,
 			text: PropTypes.string
 		})
@@ -25,6 +25,9 @@ export default class Article extends React.Component {
 	setContainerRef = ref => {
 		this.container = ref;
 	}
+	handleDelete = () => {
+		console.log('---- delete');
+	}
 	render() {
 		const {title, text, comments, date} = this.props.article;
 		const {isOpen} = this.props;
@@ -33,6 +36,7 @@ export default class Article extends React.Component {
 				<section>
 					<h3>{title}</h3>
 					<button onClick={this.props.toggleOpen}>{isOpen ? 'Close': 'Open'}</button>
+					<button onClick={this.handleDelete}>Delete</button>
 				</section>
 					{isOpen ? this.getBody(text, isOpen, comments) : null}
 			</article>
