@@ -2,9 +2,10 @@ import React from 'react';
 import CommentsList from './Commentslist';
 import PropTypes from 'prop-types';
 import {CSSTransitionGroup} from 'react-transition-group';
+import {deleteArticle} from '../actions';
+import {connect} from 'react-redux';
 
-
-export default class Article extends React.Component {
+ class Article extends React.Component {
 	static propTypes = {
 			article: PropTypes.shape({
 			title: PropTypes.string,
@@ -26,6 +27,7 @@ export default class Article extends React.Component {
 		this.container = ref;
 	}
 	handleDelete = () => {
+		this.props.deleteArticle(this.props.article.id);
 		console.log('---- delete');
 	}
 	render() {
@@ -43,3 +45,5 @@ export default class Article extends React.Component {
 		);
 	}
 }
+
+export default connect(null, {deleteArticle})(Article);
