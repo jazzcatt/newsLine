@@ -23,8 +23,8 @@ Comment.propTypes = {
 
 const mapStateToProps = () => {
 	const commentsSelector = commentSelectorFactory();
-	return (state, ownProps) => {
-		connect: commentsSelector(state, ownProps);
-	}
+	return (state, ownProps) => ({
+		comment: commentsSelector(state, ownProps)
+	});
 }
 export default connect(mapStateToProps)(Comment);
