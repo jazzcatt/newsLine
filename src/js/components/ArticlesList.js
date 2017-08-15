@@ -22,4 +22,12 @@ class ArticlesList extends React.Component {
 	}
 }
 
-export default connect(({articles}) => ({articles}) )(accordeon(ArticlesList));
+export default connect(({articles, filters}) => {
+	const {selected, dateRange:{from, to}} = filters;
+	const filteredArticles = articles.filter(article =>{
+		const publishedDate = Date.parse(article.date);
+		return (!selected.length || selected.includes(article.id)) &&
+			(!from || !to  || (publishedDate > from && publishedDate < to));
+	});
+	return {articles: filteredArticles};
+} )(accordeon(ArticlesList));

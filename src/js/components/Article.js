@@ -28,7 +28,6 @@ import {connect} from 'react-redux';
 	}
 	handleDelete = () => {
 		this.props.deleteArticle(this.props.article.id);
-		console.log('---- delete');
 	}
 	render() {
 		const {title, text, comments, date} = this.props.article;

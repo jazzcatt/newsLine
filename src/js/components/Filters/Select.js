@@ -9,7 +9,7 @@ class SelectFilter extends React.Component {
 	static propTypes = {
 		articles: PropTypes.array.isRequired
 	}
-	handleChange = selected => {this.props.changeSelected(selected.map(option => option.value));  console.log(this.props.selected)};
+	handleChange = selected => {this.props.changeSelected(selected.map(option => option.value))};
 	render() {
 		const options = this.props.articles.map(article => ({
 			label: article.title,
