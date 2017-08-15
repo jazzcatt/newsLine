@@ -3,6 +3,7 @@ import Article from './article';
 import accordeon from '../decorators/accordeon';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {filtrateArticlesSelector} from '../selectors';
 
 class ArticlesList extends React.Component {
 	static propTypes = {
@@ -22,12 +23,7 @@ class ArticlesList extends React.Component {
 	}
 }
 
-export default connect(({articles, filters}) => {
-	const {selected, dateRange:{from, to}} = filters;
-	const filteredArticles = articles.filter(article =>{
-		const publishedDate = Date.parse(article.date);
-		return (!selected.length || selected.includes(article.id)) &&
-			(!from || !to  || (publishedDate > from && publishedDate < to));
-	});
-	return {articles: filteredArticles};
+export default connect(state => {
+
+	return {articles:filtrateArticlesSelector(state)};
 } )(accordeon(ArticlesList));
